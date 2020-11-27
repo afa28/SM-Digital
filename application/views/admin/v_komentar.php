@@ -1,5 +1,5 @@
 <!--Counter Inbox-->
-<?php 
+<?php
     $query=$this->db->query("SELECT * FROM tbl_inbox WHERE inbox_status='1'");
     $jum_pesan=$query->num_rows();
     $query1=$this->db->query("SELECT * FROM tbl_komentar WHERE komentar_status='0'");
@@ -31,14 +31,14 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-   <?php 
+   <?php
     $this->load->view('admin/v_header');
   ?>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -88,7 +88,7 @@
             </span>
           </a>
         </li>
-       
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-camera"></i>
@@ -111,7 +111,7 @@
             </span>
           </a>
         </li>
-        
+
         <li>
           <a href="<?php echo base_url().'admin/inbox'?>">
             <i class="fa fa-envelope"></i> <span>Inbox</span>
@@ -129,8 +129,8 @@
             </span>
           </a>
         </li>
-        
-       
+
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -155,7 +155,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-           
+
           <div class="box">
             <!-- /.box-header -->
             <div class="box-body">
@@ -163,8 +163,8 @@
                 <thead>
                 <tr>
 					<th style="width:100px;">Tanggal</th>
-                    <th>Nama</th> 
-                    <th>Komentar</th>  
+                    <th>Nama</th>
+                    <th>Komentar</th>
                     <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
@@ -215,7 +215,7 @@
    <strong>SMD&copy; 2020 <a href="http://soemultidigital.id">Soe Multi Digital</a>.</strong> All rights reserved.
 </footer>
 
-  
+
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
@@ -230,7 +230,7 @@
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/kategori/simpan_kategori'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                                
+
                                     <div class="form-group">
                                         <label for="inputUserName" class="col-sm-4 control-label">Kategori</label>
                                         <div class="col-sm-7">
@@ -247,8 +247,8 @@
                 </div>
             </div>
         </div>
-		
-		
+
+
 		<?php foreach ($data->result_array() as $i) :
               $id=$i['komentar_id'];
               $nama=$i['komentar_nama'];
@@ -267,13 +267,13 @@
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/komentar/reply'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                                
+
                       <p><b><?php echo $nama;?>: </b><?php echo $isi;?></p>
                       <div class="form-group">
                         <div class="col-sm-12">
                           <b>Balas:</b>
-											     <input type="hidden" name="kode" value="<?php echo $id;?>"/> 
-                           <input type="hidden" name="tulisan_id" value="<?php echo $tulisan_id;?>"/> 
+											     <input type="hidden" name="kode" value="<?php echo $id;?>"/>
+                           <input type="hidden" name="tulisan_id" value="<?php echo $tulisan_id;?>"/>
                            <textarea class="form-control" name="komentar" rows="6" required></textarea>
                         </div>
                       </div>
@@ -295,7 +295,6 @@
               $email=$i['komentar_email'];
               $isi=$i['komentar_isi'];
               $tanggal=$i['tanggal'];
-              $kategori_nama=$i['kategori_nama'];
             ?>
   <!--Modal Hapus Pengguna-->
         <div class="modal fade" id="Modalpublish<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -306,10 +305,10 @@
                         <h4 class="modal-title" id="myModalLabel">Publish Komentar</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/komentar/publish'?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">       
-              <input type="hidden" name="kode" value="<?php echo $id;?>"/> 
+                    <div class="modal-body">
+              <input type="hidden" name="kode" value="<?php echo $id;?>"/>
                             <p>Apakah Anda yakin mau mempublikasikan komentar dari <b><?php echo $nama;?></b> ?</p>
-                               
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
@@ -320,14 +319,13 @@
             </div>
         </div>
   <?php endforeach;?>
-	
+
 	<?php foreach ($data->result_array() as $i) :
               $id=$i['komentar_id'];
               $nama=$i['komentar_nama'];
               $email=$i['komentar_email'];
               $isi=$i['komentar_isi'];
               $tanggal=$i['tanggal'];
-              $kategori_nama=$i['kategori_nama'];
             ?>
 	<!--Modal Hapus Pengguna-->
         <div class="modal fade" id="ModalHapus<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -338,10 +336,10 @@
                         <h4 class="modal-title" id="myModalLabel">Hapus Komentar</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/komentar/hapus_komentar'?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">       
-							<input type="hidden" name="kode" value="<?php echo $id;?>"/> 
+                    <div class="modal-body">
+							<input type="hidden" name="kode" value="<?php echo $id;?>"/>
                             <p>Apakah Anda yakin mau menghapus komentar dari <b><?php echo $nama;?></b> ?</p>
-                               
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
@@ -352,8 +350,8 @@
             </div>
         </div>
 	<?php endforeach;?>
-	
-	
+
+
 
 
 <!-- jQuery 2.2.3 -->
@@ -398,7 +396,7 @@
                     bgColor: '#FF4859'
                 });
         </script>
-    
+
     <?php elseif($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({
