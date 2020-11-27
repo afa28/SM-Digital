@@ -1,6 +1,10 @@
 <?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Tulisan extends CI_Controller{
-	function __construct(){
+
+	public function __construct(){
 		parent::__construct();
 		if(!isset($_SESSION['logged_in'])){
             $url=base_url('administrator');
@@ -12,22 +16,24 @@ class Tulisan extends CI_Controller{
 		$this->load->library('upload');
 	}
 
-
-	function index(){
+	public function index(){
 		$x['data']=$this->m_tulisan->get_all_tulisan();
 		$this->load->view('admin/v_tulisan',$x);
 	}
-	function add_tulisan(){
+
+	public function add_tulisan(){
 		$x['kat']=$this->m_kategori->get_all_kategori();
 		$this->load->view('admin/v_add_tulisan',$x);
 	}
-	function get_edit(){
+
+	public function get_edit(){
 		$kode=$this->uri->segment(4);
 		$x['data']=$this->m_tulisan->get_tulisan_by_kode($kode);
 		$x['kat']=$this->m_kategori->get_all_kategori();
 		$this->load->view('admin/v_edit_tulisan',$x);
 	}
-	function simpan_tulisan(){
+
+	public function simpan_tulisan(){
 				$config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -73,15 +79,14 @@ class Tulisan extends CI_Controller{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/tulisan');
 	                }
-	                 
+
 	            }else{
 					redirect('admin/tulisan');
 				}
-				
+
 	}
-	
-	function update_tulisan(){
-				
+
+	public function update_tulisan(){
 	            $config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -124,12 +129,12 @@ class Tulisan extends CI_Controller{
 							$this->m_tulisan->update_tulisan($tulisan_id,$judul,$isi,$kategori_id,$kategori_nama,$user_id,$user_nama,$gambar,$slug);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/tulisan');
-	                    
+
 	                }else{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/pengguna');
 	                }
-	                
+
 	            }else{
 							$tulisan_id=$this->input->post('kode');
 							$judul=strip_tags($this->input->post('xjudul'));
@@ -150,11 +155,11 @@ class Tulisan extends CI_Controller{
 							$this->m_tulisan->update_tulisan_tanpa_img($tulisan_id,$judul,$isi,$kategori_id,$kategori_nama,$user_id,$user_nama,$slug);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/tulisan');
-	            } 
+	            }
 
 	}
 
-	function hapus_tulisan(){
+	public function hapus_tulisan(){
 		$kode=$this->input->post('kode');
 		$gambar=$this->input->post('gambar');
 		$path='./assets/images/'.$gambar;

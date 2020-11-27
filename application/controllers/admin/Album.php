@@ -1,6 +1,10 @@
 <?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Album extends CI_Controller{
-	function __construct(){
+
+	public function __construct(){
 		parent::__construct();
 		if(!isset($_SESSION['logged_in'])){
             $url=base_url('administrator');
@@ -11,13 +15,12 @@ class Album extends CI_Controller{
 		$this->load->library('upload');
 	}
 
-
-	function index(){
+	public function index(){
 		$x['data']=$this->m_album->get_all_album();
 		$this->load->view('admin/v_album',$x);
 	}
-	
-	function simpan_album(){
+
+	public function simpan_album(){
 				$config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -54,15 +57,15 @@ class Album extends CI_Controller{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/album');
 	                }
-	                 
+
 	            }else{
 					redirect('admin/album');
 				}
-				
+
 	}
-	
-	function update_album(){
-				
+
+	public function update_album(){
+
 	            $config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -99,12 +102,12 @@ class Album extends CI_Controller{
 							$this->m_album->update_album($album_id,$album_nama,$user_id,$user_nama,$gambar);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/album');
-	                    
+
 	                }else{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/album');
 	                }
-	                
+
 	            }else{
 							$album_id=$this->input->post('kode');
 	                        $album_nama=strip_tags($this->input->post('xnama_album'));
@@ -116,11 +119,11 @@ class Album extends CI_Controller{
 							$this->m_album->update_album_tanpa_img($album_id,$album_nama,$user_id,$user_nama);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/album');
-	            } 
+	            }
 
 	}
 
-	function hapus_album(){
+	public function hapus_album(){
 		$kode=$this->input->post('kode');
 		$gambar=$this->input->post('gambar');
 		$path='./assets/images/'.$gambar;

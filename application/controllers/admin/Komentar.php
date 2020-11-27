@@ -1,6 +1,10 @@
 <?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Komentar extends CI_Controller{
-	function __construct(){
+
+	public function __construct(){
 		parent::__construct();
 		if(!isset($_SESSION['logged_in'])){
             $url=base_url('administrator');
@@ -9,12 +13,12 @@ class Komentar extends CI_Controller{
 		$this->load->model('m_komentar');
 	}
 
-	function index(){
+	public function index(){
 		$x['data']=$this->m_komentar->get_komentar();
 		$this->load->view('admin/v_komentar',$x);
-	} 
+	}
 
-	function reply(){
+	public function reply(){
 		$kode=$this->input->post('kode');
 		$tulisan_id=$this->input->post('tulisan_id');
 		$komentar=strip_tags(str_replace("'", "", htmlspecialchars($this->input->post('komentar',TRUE))));
@@ -23,17 +27,17 @@ class Komentar extends CI_Controller{
 		redirect('admin/komentar');
 	}
 
-	function publish(){
+	public function publish(){
 		$kode=$this->input->post('kode');
 		$this->m_komentar->publish_komentar($kode);
 		echo $this->session->set_flashdata('msg','info');
 		redirect('admin/komentar');
 	}
 
-	function hapus_komentar(){
+	public function hapus_komentar(){
 		$kode=$this->input->post('kode');
 		$this->m_komentar->hapus_komentar($kode);
 		echo $this->session->set_flashdata('msg','success-hapus');
 		redirect('admin/komentar');
 	}
-} 
+}

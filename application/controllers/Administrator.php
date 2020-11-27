@@ -1,13 +1,19 @@
 <?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Administrator extends CI_Controller{
-    function __construct(){
+
+    public function __construct(){
         parent:: __construct();
         $this->load->model('m_login');
     }
-    function index(){
+
+    public function index(){
         $this->load->view('admin/v_login');
     }
-    function auth(){
+
+    public function auth(){
         $username=strip_tags(str_replace("'", "", $this->input->post('username',TRUE)));
         $password=strip_tags(str_replace("'", "", $this->input->post('password',TRUE)));
         $cadmin=$this->m_login->cekadmin($username,$password);
@@ -28,16 +34,16 @@ class Administrator extends CI_Controller{
         }
     }
 
-
-    function gagallogin(){
+    public function gagallogin(){
         $url=base_url('administrator');
         echo $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert"><span class="fa fa-close"></span></button> Username Atau Password Salah</div>');
         redirect($url);
     }
 
-    function logout(){
+    public function logout(){
         $this->session->sess_destroy();
         $url=base_url('administrator');
         redirect($url);
     }
+
 }

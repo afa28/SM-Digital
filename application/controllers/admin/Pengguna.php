@@ -1,6 +1,10 @@
 <?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Pengguna extends CI_Controller{
-	function __construct(){
+
+	public function __construct(){
 		parent::__construct();
 		if(!isset($_SESSION['logged_in'])){
             $url=base_url('administrator');
@@ -10,15 +14,14 @@ class Pengguna extends CI_Controller{
 		$this->load->library('upload');
 	}
 
-
-	function index(){
+	public function index(){
 		$kode=$this->session->userdata('idadmin');
 		$x['user']=$this->m_pengguna->get_pengguna_login($kode);
 		$x['data']=$this->m_pengguna->get_all_pengguna();
 		$this->load->view('admin/v_pengguna',$x);
 	}
 
-	function simpan_pengguna(){
+	public function simpan_pengguna(){
 	            $config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -57,14 +60,14 @@ class Pengguna extends CI_Controller{
 	               				$this->m_pengguna->simpan_pengguna($nama,$jenkel,$username,$password,$email,$nohp,$level,$gambar);
 	                    		echo $this->session->set_flashdata('msg','success');
 	               				redirect('admin/pengguna');
-	               				
+
 	               			}
-	                    
+
 	                }else{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/pengguna');
 	                }
-	                 
+
 	            }else{
 	            	$nama=$this->input->post('xnama');
 	                $jenkel=$this->input->post('xjenkel');
@@ -82,12 +85,12 @@ class Pengguna extends CI_Controller{
 	                    echo $this->session->set_flashdata('msg','success');
 	               		redirect('admin/pengguna');
 	               	}
-	            } 
+	            }
 
 	}
 
-	function update_pengguna(){
-				
+	public function update_pengguna(){
+
 	            $config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -132,12 +135,12 @@ class Pengguna extends CI_Controller{
 	                    		echo $this->session->set_flashdata('msg','info');
 	               				redirect('admin/pengguna');
 	               			}
-	                    
+
 	                }else{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/pengguna');
 	                }
-	                
+
 	            }else{
 	            	$kode=$this->input->post('kode');
 	            	$nama=$this->input->post('xnama');
@@ -160,11 +163,11 @@ class Pengguna extends CI_Controller{
 	                    echo $this->session->set_flashdata('msg','warning');
 	               		redirect('admin/pengguna');
 	               	}
-	            } 
+	            }
 
 	}
 
-	function hapus_pengguna(){
+	public function hapus_pengguna(){
 		$kode=$this->input->post('kode');
 		$data=$this->m_pengguna->get_pengguna_login($kode);
 		$q=$data->row_array();
@@ -176,8 +179,8 @@ class Pengguna extends CI_Controller{
 	    redirect('admin/pengguna');
 	}
 
-	function reset_password(){
-   
+	public function reset_password(){
+
         $id=$this->uri->segment(4);
         $get=$this->m_pengguna->getusername($id);
         if($get->num_rows()>0){
@@ -190,7 +193,7 @@ class Pengguna extends CI_Controller{
         echo $this->session->set_flashdata('uname',$b);
         echo $this->session->set_flashdata('upass',$pass);
 	    redirect('admin/pengguna');
-   
+
     }
 
 

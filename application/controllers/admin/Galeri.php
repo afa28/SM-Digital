@@ -1,6 +1,10 @@
 <?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Galeri extends CI_Controller{
-	function __construct(){
+
+	public function __construct(){
 		parent::__construct();
 		if(!isset($_SESSION['logged_in'])){
             $url=base_url('administrator');
@@ -12,15 +16,14 @@ class Galeri extends CI_Controller{
 		$this->load->library('upload');
 	}
 
+	public function index(){
 
-	function index(){
-		
 		$x['data']=$this->m_galeri->get_all_galeri();
 		$x['alb']=$this->m_album->get_all_album();
 		$this->load->view('admin/v_galeri',$x);
 	}
-	
-	function simpan_galeri(){
+
+	public function simpan_galeri(){
 				$config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -58,15 +61,15 @@ class Galeri extends CI_Controller{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/galeri');
 	                }
-	                 
+
 	            }else{
 					redirect('admin/galeri');
 				}
-				
+
 	}
-	
-	function update_galeri(){
-				
+
+	public function update_galeri(){
+
 	            $config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -104,12 +107,12 @@ class Galeri extends CI_Controller{
 							$this->m_galeri->update_galeri($galeri_id,$judul,$album,$user_id,$user_nama,$gambar);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/galeri');
-	                    
+
 	                }else{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/galeri');
 	                }
-	                
+
 	            }else{
 							$galeri_id=$this->input->post('kode');
 	                        $judul=strip_tags($this->input->post('xjudul'));
@@ -122,11 +125,11 @@ class Galeri extends CI_Controller{
 							$this->m_galeri->update_galeri_tanpa_img($galeri_id,$judul,$album,$user_id,$user_nama);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/galeri');
-	            } 
+	            }
 
 	}
 
-	function hapus_galeri(){
+	public function hapus_galeri(){
 		$kode=$this->input->post('kode');
 		$album=$this->input->post('album');
 		$gambar=$this->input->post('gambar');

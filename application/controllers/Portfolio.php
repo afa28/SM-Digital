@@ -1,10 +1,15 @@
 <?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Portfolio extends CI_Controller{
-	function __construct(){
+
+    public function __construct(){
 		parent::__construct();
 		$this->load->model('m_portfolio');
 	}
-	function index(){
+
+    public function index(){
 		$jum=$this->m_portfolio->get_portfolio();
         $page=$this->uri->segment(3);
         if(!$page):

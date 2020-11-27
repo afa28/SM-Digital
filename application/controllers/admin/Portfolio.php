@@ -1,6 +1,10 @@
 <?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Portfolio extends CI_Controller{
-	function __construct(){
+
+	public function __construct(){
 		parent::__construct();
 		if(!isset($_SESSION['logged_in'])){
             $url=base_url('administrator');
@@ -12,19 +16,19 @@ class Portfolio extends CI_Controller{
 	}
 
 
-	function index(){
+	public function index(){
 		$x['data']=$this->m_portfolio->get_all_portfolio();
 		$this->load->view('admin/v_portfolio',$x);
 	}
-	function add_portfolio(){
+	public function add_portfolio(){
 		$this->load->view('admin/v_add_portfolio');
 	}
-	function get_edit(){
+	public function get_edit(){
 		$kode=$this->uri->segment(4);
 		$x['data']=$this->m_portfolio->get_portfolio_by_kode($kode);
 		$this->load->view('admin/v_edit_portfolio',$x);
 	}
-	function simpan_portfolio(){
+	public function simpan_portfolio(){
 				$config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -62,15 +66,15 @@ class Portfolio extends CI_Controller{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/portfolio');
 	                }
-	                 
+
 	            }else{
 					redirect('admin/portfolio');
 				}
-				
+
 	}
-	
-	function update_portfolio(){
-				
+
+	public function update_portfolio(){
+
 	            $config['upload_path'] = './assets/images/'; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
@@ -105,12 +109,12 @@ class Portfolio extends CI_Controller{
 							$this->m_portfolio->update_portfolio($port_id,$judul,$isi,$user_nama,$gambar);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/portfolio');
-	                    
+
 	                }else{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/portfolio');
 	                }
-	                
+
 	            }else{
 							$port_id=$this->input->post('kode');
 	                        $judul=strip_tags($this->input->post('xjudul'));
@@ -123,11 +127,11 @@ class Portfolio extends CI_Controller{
 							$this->m_portfolio->update_portfolio_tanpa_img($port_id,$judul,$isi,$user_nama);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/portfolio');
-	            } 
+	            }
 
 	}
 
-	function hapus_portfolio(){
+	public function hapus_portfolio(){
 		$kode=$this->input->post('kode');
 		$gambar=$this->input->post('gambar');
 		$path='./assets/images/'.$gambar;

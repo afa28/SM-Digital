@@ -1,13 +1,17 @@
-<?php 
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Blog extends CI_Controller{
-	function __construct(){
+
+	public function __construct(){
 		parent::__construct();
 		$this->load->model('m_tulisan');
 		$this->load->model('m_pengunjung');
         $this->m_pengunjung->count_visitor();
 	}
 
-	function index(){
+	public function index(){
 		$jum=$this->m_tulisan->berita();
         $page=$this->uri->segment(3);
         if(!$page):
@@ -30,7 +34,7 @@ class Blog extends CI_Controller{
 		$this->load->view('v_blog',$x);
 	}
 
-	function detail($slug){
+	public function detail($slug){
 		$data=$this->m_tulisan->get_berita_by_slug($slug);
 		$q=$data->row_array();
 		$kode=$q['tulisan_id'];
@@ -43,7 +47,7 @@ class Blog extends CI_Controller{
 		$this->load->view('v_blog_detail',$x);
 	}
 
-	function kategori(){
+	public function kategori(){
 		$kategori_id=$this->uri->segment(3);
 		$jum=$this->m_tulisan->get_tulisan_by_kategori($kategori_id);
         $page=$this->uri->segment(4);
@@ -67,13 +71,13 @@ class Blog extends CI_Controller{
 		$this->load->view('v_blog',$x);
 	}
 
-	function search(){
+	public function search(){
 		$keyword=str_replace("'", "", $this->input->post('xfilter',TRUE));
 		$x['data']=$this->m_tulisan->search_tulisan($keyword);
 		$this->load->view('v_blog',$x);
 	}
 
-	function komentar(){
+	public function komentar(){
 		$tulisan_id=$this->input->post('kode');
 		$nama=strip_tags(htmlspecialchars(str_replace("'", "", $this->input->post('nama',TRUE))));
 		$email=strip_tags(htmlspecialchars(str_replace("'", "", $this->input->post('email',TRUE))));
@@ -84,7 +88,7 @@ class Blog extends CI_Controller{
 		redirect('blog/detail/'.$tulisan_id);
 	}
 
-	function good($slug){
+	public function good($slug){
 		$data=$this->m_tulisan->get_berita_by_slug($slug);
 		if($data->num_rows() > 0){
 			$q=$data->row_array();
@@ -96,7 +100,7 @@ class Blog extends CI_Controller{
 		}
 	}
 
-	function like($slug){
+	public function like($slug){
 		$data=$this->m_tulisan->get_berita_by_slug($slug);
 		if($data->num_rows() > 0){
 			$q=$data->row_array();
@@ -108,7 +112,7 @@ class Blog extends CI_Controller{
 		}
 	}
 
-	function love($slug){
+	public function love($slug){
 		$data=$this->m_tulisan->get_berita_by_slug($slug);
 		if($data->num_rows() > 0){
 			$q=$data->row_array();
@@ -120,7 +124,7 @@ class Blog extends CI_Controller{
 		}
 	}
 
-	function genius($slug){
+	public function genius($slug){
 		$data=$this->m_tulisan->get_berita_by_slug($slug);
 		if($data->num_rows() > 0){
 			$q=$data->row_array();
@@ -131,6 +135,5 @@ class Blog extends CI_Controller{
 			redirect('artikel/'.$slug);
 		}
 	}
-
 
 }
