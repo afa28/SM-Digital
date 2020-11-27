@@ -22,9 +22,9 @@ class Administrator extends CI_Controller{
             );
 
             $this->session->set_userdata($newdata);
-            redirect('admin/dashboard'); 
+            redirect('admin/dashboard');
         }else{
-            redirect('administrator/gagallogin'); 
+            redirect('administrator/gagallogin');
         }
     }
 
