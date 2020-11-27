@@ -1,5 +1,5 @@
 <!--Counter Inbox-->
-<?php 
+<?php
     $query=$this->db->query("SELECT * FROM tbl_inbox WHERE inbox_status='1'");
     $jum_pesan=$query->num_rows();
     $query1=$this->db->query("SELECT * FROM tbl_komentar WHERE komentar_status='0'");
@@ -26,27 +26,27 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url().'assets/dist/css/skins/_all-skins.min.css'?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/toast/jquery.toast.min.css'?>"/>
-  
-	<?php 
+
+	<?php
             function limit_words($string, $word_limit){
                 $words = explode(" ",$string);
                 return implode(" ",array_splice($words,0,$word_limit));
             }
-                
+
     ?>
-	
+
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue fixed sidebar-mini">
 <div class="wrapper">
 
-   <?php 
+   <?php
     $this->load->view('admin/v_header');
   ?>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -96,7 +96,7 @@
             </span>
           </a>
         </li>
-       
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-camera"></i>
@@ -119,7 +119,7 @@
             </span>
           </a>
         </li>
-        
+
         <li>
           <a href="<?php echo base_url().'admin/inbox'?>">
             <i class="fa fa-envelope"></i> <span>Inbox</span>
@@ -137,8 +137,8 @@
             </span>
           </a>
         </li>
-        
-       
+
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -164,7 +164,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-           
+
           <div class="box">
             <div class="box-header">
               <a class="btn btn-success btn-flat" href="<?php echo base_url().'admin/tulisan/add_tulisan'?>"><span class="fa fa-plus"></span> Add New</a>
@@ -179,7 +179,7 @@
       					<th>Tanggal</th>
       					<th>Author</th>
       					<th>Baca</th>
-                    <th>Kategori</th>  
+                    <th>Kategori</th>
                     <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
@@ -197,12 +197,12 @@
           					   $tulisan_views=$i['tulisan_views'];
                        $kategori_id=$i['tulisan_kategori_id'];
                        $kategori_nama=$i['tulisan_kategori_nama'];
-                       
+
                     ?>
                 <tr>
                   <td><img src="<?php echo base_url().'assets/images/'.$tulisan_gambar;?>" style="width:90px;"></td>
                   <td><?php echo $tulisan_judul;?></td>
-                  
+
         				  <td><?php echo $tulisan_tanggal;?></td>
         				  <td><?php echo $tulisan_author;?></td>
         				  <td><?php echo $tulisan_views;?></td>
@@ -234,13 +234,13 @@
     <strong>SMD&copy; 2020 <a href="http://soemultidigital.id">Soe Multi Digital</a>.</strong> All rights reserved.
  </footer>
 
-  
+
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
 
-	
+
 	<?php foreach ($data->result_array() as $i) :
               $tulisan_id=$i['tulisan_id'];
               $tulisan_judul=$i['tulisan_judul'];
@@ -255,11 +255,11 @@
                         <h4 class="modal-title" id="myModalLabel">Hapus Berita</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/tulisan/hapus_tulisan'?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">       
-							       <input type="hidden" name="kode" value="<?php echo $tulisan_id;?>"/> 
+                    <div class="modal-body">
+							       <input type="hidden" name="kode" value="<?php echo $tulisan_id;?>"/>
                      <input type="hidden" value="<?php echo $tulisan_gambar;?>" name="gambar">
                             <p>Apakah Anda yakin mau menghapus Posting <b><?php echo $tulisan_judul;?></b> ?</p>
-                               
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
@@ -270,8 +270,8 @@
             </div>
         </div>
 	<?php endforeach;?>
-	
-	
+
+
 
 
 <!-- jQuery 2.2.3 -->
@@ -316,7 +316,7 @@
                     bgColor: '#FF4859'
                 });
         </script>
-    
+
     <?php elseif($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({

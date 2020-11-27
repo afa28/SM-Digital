@@ -1,5 +1,5 @@
 <!--Counter Inbox-->
-<?php 
+<?php
     $query=$this->db->query("SELECT * FROM tbl_inbox WHERE inbox_status='1'");
     $jum_pesan=$query->num_rows();
     $query1=$this->db->query("SELECT * FROM tbl_komentar WHERE komentar_status='0'");
@@ -26,21 +26,21 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url().'assets/dist/css/skins/_all-skins.min.css'?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/toast/jquery.toast.min.css'?>"/>
-  
-	
-	
+
+
+
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue fixed sidebar-mini">
 <div class="wrapper">
 
-   <?php 
+   <?php
     $this->load->view('admin/v_header');
   ?>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -90,7 +90,7 @@
             </span>
           </a>
         </li>
-       
+
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-camera"></i>
@@ -113,7 +113,7 @@
             </span>
           </a>
         </li>
-        
+
         <li>
           <a href="<?php echo base_url().'admin/inbox'?>">
             <i class="fa fa-envelope"></i> <span>Inbox</span>
@@ -131,8 +131,8 @@
             </span>
           </a>
         </li>
-        
-       
+
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -143,7 +143,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Gallery Photos 
+        Gallery Photos
         <small></small>
       </h1>
       <ol class="breadcrumb">
@@ -157,7 +157,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-           
+
           <div class="box">
             <div class="box-header">
               <a class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal"><span class="fa fa-plus"></span> Add Photo</a>
@@ -187,7 +187,7 @@
           					   $galeri_gambar=$i['galeri_gambar'];
           					   $galeri_album_id=$i['galeri_album_id'];
                        $galeri_album_nama=$i['album_nama'];
-                       
+
                     ?>
                 <tr>
                   <td><img src="<?php echo base_url().'assets/images/'.$galeri_gambar;?>" style="width:80px;"></td>
@@ -222,7 +222,7 @@
     <strong>SMD&copy; 2020 <a href="http://soemultidigital.id">Soe Multi Digital</a>.</strong> All rights reserved.
   </footer>
 
-  
+
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
@@ -237,7 +237,7 @@
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/galeri/simpan_galeri'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                                
+
                                     <div class="form-group">
                                         <label for="inputUserName" class="col-sm-4 control-label">Judul</label>
                                         <div class="col-sm-7">
@@ -248,7 +248,7 @@
                                     <div class="form-group">
                                         <label for="inputUserName" class="col-sm-4 control-label">Album</label>
                                         <div class="col-sm-7">
-                                            
+
                                           <select class="form-control" name="xalbum" style="width: 100%;" required>
                                                     <option value="">-Pilih-</option>
                                               <?php
@@ -257,21 +257,21 @@
                                                  $no++;
                                                            $alb_id=$a['album_id'];
                                                            $alb_nama=$a['album_nama'];
-                                                           
+
                                                         ?>
                                                     <option value="<?php echo $alb_id;?>"><?php echo $alb_nama;?></option>
                                               <?php endforeach;?>
                                           </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="inputUserName" class="col-sm-4 control-label">Photo</label>
                                         <div class="col-sm-7">
                                             <input type="file" name="filefoto" required/>
                                         </div>
                                     </div>
-                               
+
 
                     </div>
                     <div class="modal-footer">
@@ -293,7 +293,7 @@
               $galeri_album_id=$i['galeri_album_id'];
               $galeri_album_nama=$i['album_nama'];
             ?>
-  
+
         <div class="modal fade" id="ModalEdit<?php echo $galeri_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -302,8 +302,8 @@
                         <h4 class="modal-title" id="myModalLabel">Edit Photo</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/galeri/update_galeri'?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">       
-                                <input type="hidden" name="kode" value="<?php echo $galeri_id;?>"/> 
+                    <div class="modal-body">
+                                <input type="hidden" name="kode" value="<?php echo $galeri_id;?>"/>
                                 <input type="hidden" value="<?php echo $galeri_gambar;?>" name="gambar">
                                   <div class="form-group">
                                         <label for="inputUserName" class="col-sm-4 control-label">Judul</label>
@@ -315,7 +315,7 @@
                                     <div class="form-group">
                                         <label for="inputUserName" class="col-sm-4 control-label">Album</label>
                                         <div class="col-sm-7">
-                                            
+
                                           <select class="form-control" name="xalbum" style="width: 100%;" required>
                                                     <option value="">-Pilih-</option>
                                               <?php
@@ -330,14 +330,14 @@
                                           </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="inputUserName" class="col-sm-4 control-label">Photo</label>
                                         <div class="col-sm-7">
                                             <input type="file" name="filefoto"/>
                                         </div>
                                     </div>
-                               
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
@@ -368,12 +368,12 @@
                         <h4 class="modal-title" id="myModalLabel">Hapus Photo</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/galeri/hapus_galeri'?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">       
-							       <input type="hidden" name="kode" value="<?php echo $galeri_id;?>"/> 
+                    <div class="modal-body">
+							       <input type="hidden" name="kode" value="<?php echo $galeri_id;?>"/>
                      <input type="hidden" value="<?php echo $galeri_gambar;?>" name="gambar">
                      <input type="hidden" value="<?php echo $galeri_album_id;?>" name="album">
                             <p>Apakah Anda yakin mau menghapus Posting <b><?php echo $galeri_judul;?></b> ?</p>
-                               
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
@@ -384,8 +384,8 @@
             </div>
         </div>
 	<?php endforeach;?>
-	
-	
+
+
 
 
 <!-- jQuery 2.2.3 -->
@@ -430,7 +430,7 @@
                     bgColor: '#FF4859'
                 });
         </script>
-    
+
     <?php elseif($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({

@@ -1,5 +1,5 @@
 <!--Counter Inbox-->
-<?php 
+<?php
     $query=$this->db->query("SELECT * FROM tbl_inbox WHERE inbox_status='1'");
     $jum_pesan=$query->num_rows();
     $query1=$this->db->query("SELECT * FROM tbl_komentar WHERE komentar_status='0'");
@@ -33,15 +33,15 @@
             $value[] = (float) $result->jumlah; //ambil nilai
         }
         /* end mengambil query*/
-         
+
     ?>
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue fixed sidebar-mini">
 <div class="wrapper">
 
   <!--Header-->
-  <?php 
+  <?php
     $this->load->view('admin/v_header');
   ?>
 
@@ -49,7 +49,7 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -99,7 +99,7 @@
             </span>
           </a>
         </li>
-       
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-camera"></i>
@@ -122,7 +122,7 @@
             </span>
           </a>
         </li>
-        
+
         <li>
           <a href="<?php echo base_url().'admin/inbox'?>">
             <i class="fa fa-envelope"></i> <span>Inbox</span>
@@ -140,8 +140,8 @@
             </span>
           </a>
         </li>
-        
-       
+
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -168,7 +168,7 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-aqua"><i class="fa fa-chrome"></i></span>
-              <?php 
+              <?php
                   $query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_perangkat='Chrome'");
                   $jml=$query->num_rows();
               ?>
@@ -184,7 +184,7 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-firefox"></i></span>
-            <?php 
+            <?php
                   $query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_perangkat='Firefox' OR pengunjung_perangkat='Mozilla'");
                   $jml=$query->num_rows();
             ?>
@@ -204,7 +204,7 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-green"><i class="fa fa-bug"></i></span>
-              <?php 
+              <?php
                     $query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_perangkat='Googlebot'");
                     $jml=$query->num_rows();
               ?>
@@ -220,7 +220,7 @@
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-yellow"><i class="fa fa-opera"></i></span>
-            <?php 
+            <?php
                     $query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_perangkat='Opera'");
                     $jml=$query->num_rows();
               ?>
@@ -254,13 +254,13 @@
                   <!-- /.chart-responsive -->
                 </div>
                 <!-- /.col -->
-                
+
                 <!-- /.col -->
               </div>
               <!-- /.row -->
             </div>
             <!-- ./box-body -->
-            
+
             <!-- /.box-footer -->
           </div>
           <!-- /.box -->
@@ -279,7 +279,7 @@
               <h3 class="box-title">Posting Populer</h3>
 
               <table class="table">
-              <?php 
+              <?php
                   $query=$this->db->query("SELECT * FROM tbl_tulisan ORDER BY tulisan_views DESC");
                   foreach ($query->result_array() as $i) :
                       $tulisan_id=$i['tulisan_id'];
@@ -293,11 +293,11 @@
               <?php endforeach;?>
               </table>
             </div>
-            
+
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-          
+
           <!-- /.box -->
         </div>
         <!-- /.col -->
@@ -306,7 +306,7 @@
           <!-- Info Boxes Style 2 -->
           <div class="info-box bg-yellow">
             <span class="info-box-icon"><i class="fa fa-safari"></i></span>
-            <?php 
+            <?php
                     $query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_perangkat='Safari'");
                     $jml=$query->num_rows();
               ?>
@@ -326,7 +326,7 @@
           <!-- /.info-box -->
           <div class="info-box bg-green">
             <span class="info-box-icon"><i class="fa fa-globe"></i></span>
-            <?php 
+            <?php
                     $query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_perangkat='Other' OR pengunjung_perangkat='Internet Explorer'");
                     $jml=$query->num_rows();
               ?>
@@ -346,7 +346,7 @@
           <!-- /.info-box -->
           <div class="info-box bg-red">
             <span class="info-box-icon"><i class="fa fa-users"></i></span>
-            <?php 
+            <?php
                     $query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE DATE_FORMAT(pengunjung_tanggal,'%m%y')=DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%m%y')");
                     $jml=$query->num_rows();
               ?>
@@ -366,7 +366,7 @@
           <!-- /.info-box -->
           <div class="info-box bg-aqua">
             <span class="info-box-icon"><i class="fa fa-users"></i></span>
-             <?php 
+             <?php
                     $query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE DATE_FORMAT(pengunjung_tanggal,'%m%y')=DATE_FORMAT(CURDATE(),'%m%y')");
                     $jml=$query->num_rows();
               ?>
@@ -386,7 +386,7 @@
           <!-- /.info-box -->
 
           <!-- PRODUCT LIST -->
-          
+
           <!-- /.box -->
         </div>
         <!-- /.col -->
@@ -435,7 +435,7 @@
             var lineChartData = {
                 labels : <?php echo json_encode($bulan);?>,
                 datasets : [
-                    
+
                     {
                         fillColor: "rgba(60,141,188,0.9)",
                         strokeColor: "rgba(60,141,188,0.8)",
@@ -447,7 +447,7 @@
                     }
 
                 ]
-                
+
             }
 
         var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
@@ -471,7 +471,7 @@
             legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
             responsive: true
         });
-        
+
         </script>
 
 </body>

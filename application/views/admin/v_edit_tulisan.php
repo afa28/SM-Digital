@@ -1,5 +1,5 @@
 <!--Counter Inbox-->
-<?php 
+<?php
     $query=$this->db->query("SELECT * FROM tbl_inbox WHERE inbox_status='1'");
     $jum_pesan=$query->num_rows();
     $query1=$this->db->query("SELECT * FROM tbl_komentar WHERE komentar_status='0'");
@@ -36,19 +36,19 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url().'assets/dist/css/skins/_all-skins.min.css'?>">
 
-  
+
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue fixed sidebar-mini">
 <div class="wrapper">
 
-   <?php 
+   <?php
     $this->load->view('admin/v_header');
   ?>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -98,7 +98,7 @@
             </span>
           </a>
         </li>
-       
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-camera"></i>
@@ -121,7 +121,7 @@
             </span>
           </a>
         </li>
-        
+
         <li>
           <a href="<?php echo base_url().'admin/inbox'?>">
             <i class="fa fa-envelope"></i> <span>Inbox</span>
@@ -139,8 +139,8 @@
             </span>
           </a>
         </li>
-        
-       
+
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -173,7 +173,7 @@
         $b=$data->row_array();
     ?>
 		<form action="<?php echo base_url().'admin/tulisan/update_tulisan'?>" method="post" enctype="multipart/form-data">
-		
+
         <!-- /.box-header -->
         <div class="box-body">
           <div class="row">
@@ -192,7 +192,7 @@
           <!-- /.row -->
         </div>
         <!-- /.box-body -->
-       
+
       </div>
 	  </div>
       <!-- /.box -->
@@ -205,9 +205,9 @@
               <h3 class="box-title">Post</h3>
             </div>
             <div class="box-body">
-			
+
 			       <textarea id="ckeditor" name="xisi" required><?php echo $b['tulisan_isi'];?></textarea>
-              
+
             </div>
             <!-- /.box-body -->
           </div>
@@ -221,7 +221,7 @@
               <h3 class="box-title">Pengaturan Lainnya</h3>
             </div>
             <div class="box-body">
-             
+
               <div class="form-group">
                 <label>Kategori</label>
                 <select class="form-control select2" name="xkategori" style="width: 100%;" required>
@@ -235,22 +235,22 @@
                                else
                                   echo "<option value='$kategori_id'>$kategori_nama</option>";
                   }?>
-                          
+
                 </select>
               </div>
-			  
+
 			  <div class="form-group">
                 <label>Gambar</label>
                 <input type="file" name="filefoto" style="width: 100%;">
               </div>
 
-			
+
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
 		</form>
-          
+
           <!-- /.box -->
         </div>
         <!-- /.col (right) -->
@@ -268,7 +268,7 @@
    <strong>SMD&copy; 2020 <a href="http://soemultidigital.id">Soe Multi Digital</a>.</strong> All rights reserved.
   </footer>
 
- 
+
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
@@ -308,10 +308,10 @@
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-	
+
     CKEDITOR.replace('ckeditor');
-   
-	
+
+
   });
 </script>
 

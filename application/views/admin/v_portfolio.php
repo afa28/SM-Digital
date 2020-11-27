@@ -1,5 +1,5 @@
 <!--Counter Inbox-->
-<?php 
+<?php
     $query=$this->db->query("SELECT * FROM tbl_inbox WHERE inbox_status='1'");
     $jum_pesan=$query->num_rows();
     $query1=$this->db->query("SELECT * FROM tbl_komentar WHERE komentar_status='0'");
@@ -26,27 +26,27 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url().'assets/dist/css/skins/_all-skins.min.css'?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/toast/jquery.toast.min.css'?>"/>
-  
-	<?php 
+
+	<?php
             function limit_words($string, $word_limit){
                 $words = explode(" ",$string);
                 return implode(" ",array_splice($words,0,$word_limit));
             }
-                
+
     ?>
-	
+
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue fixed sidebar-mini">
 <div class="wrapper">
 
-   <?php 
+   <?php
     $this->load->view('admin/v_header');
   ?>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -96,7 +96,7 @@
             </span>
           </a>
         </li>
-       
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-camera"></i>
@@ -119,7 +119,7 @@
             </span>
           </a>
         </li>
-        
+
         <li>
           <a href="<?php echo base_url().'admin/inbox'?>">
             <i class="fa fa-envelope"></i> <span>Inbox</span>
@@ -137,8 +137,8 @@
             </span>
           </a>
         </li>
-        
-       
+
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -164,7 +164,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-           
+
           <div class="box">
             <div class="box-header">
               <a class="btn btn-success btn-flat" href="<?php echo base_url().'admin/portfolio/add_portfolio'?>"><span class="fa fa-plus"></span> Add Portfolio</a>
@@ -177,7 +177,7 @@
           					<th>Gambar</th>
           					<th>Judul</th>
           					<th>Tanggal</th>
-          					<th>Author</th> 
+          					<th>Author</th>
                     <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
@@ -192,12 +192,12 @@
           					   $port_tanggal=$i['tanggal'];
           					   $port_author=$i['port_author'];
           					   $port_gambar=$i['port_image'];
-                       
+
                     ?>
                 <tr>
                   <td><img src="<?php echo base_url().'assets/images/'.$port_gambar;?>" style="width:90px;"></td>
                   <td><?php echo $port_judul;?></td>
-                  
+
         				  <td><?php echo $port_tanggal;?></td>
         				  <td><?php echo $port_author;?></td>
                   <td style="text-align:right;">
@@ -227,13 +227,13 @@
   <strong>SMD&copy; 2020 <a href="http://soemultidigital.id">Soe Multi Digital</a>.</strong> All rights reserved.
  </footer>
 
-  
+
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
 
-	
+
 	<?php foreach ($data->result_array() as $i) :
               $port_id=$i['port_id'];
               $port_judul=$i['port_judul'];
@@ -248,11 +248,11 @@
                         <h4 class="modal-title" id="myModalLabel">Hapus Portfolio</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/portfolio/hapus_portfolio'?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">       
-							       <input type="hidden" name="kode" value="<?php echo $port_id;?>"/> 
+                    <div class="modal-body">
+							       <input type="hidden" name="kode" value="<?php echo $port_id;?>"/>
                      <input type="hidden" value="<?php echo $port_gambar;?>" name="gambar">
                             <p>Apakah Anda yakin mau menghapus Portfolio <b><?php echo $port_judul;?></b> ?</p>
-                               
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
@@ -263,8 +263,8 @@
             </div>
         </div>
 	<?php endforeach;?>
-	
-	
+
+
 
 
 <!-- jQuery 2.2.3 -->
@@ -297,7 +297,7 @@
     });
   });
 </script>
-    
+
     <?php if($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({

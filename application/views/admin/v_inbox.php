@@ -1,5 +1,5 @@
 <!--Counter Inbox-->
-<?php 
+<?php
     $query=$this->db->query("SELECT * FROM tbl_inbox WHERE inbox_status='1'");
     $jum_pesan=$query->num_rows();
     $query1=$this->db->query("SELECT * FROM tbl_komentar WHERE komentar_status='0'");
@@ -33,17 +33,17 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/toast/jquery.toast.min.css'?>"/>
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue fixed sidebar-mini">
 <div class="wrapper">
 
-   <?php 
+   <?php
     $this->load->view('admin/v_header');
   ?>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -93,7 +93,7 @@
             </span>
           </a>
         </li>
-       
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-camera"></i>
@@ -116,7 +116,7 @@
             </span>
           </a>
         </li>
-        
+
         <li class="active">
           <a href="<?php echo base_url().'admin/inbox'?>">
             <i class="fa fa-envelope"></i> <span>Inbox</span>
@@ -134,8 +134,8 @@
             </span>
           </a>
         </li>
-        
-       
+
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -160,7 +160,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-           
+
           <div class="box">
             <!-- /.box-header -->
             <div class="box-body">
@@ -184,7 +184,7 @@
                        $inbox_email=$i['inbox_email'];
                        $inbox_msg=$i['inbox_pesan'];
                        $tanggal=$i['tanggal'];
-                       
+
                     ?>
                 <tr>
                   <td><?php echo $tanggal;?></td>
@@ -217,12 +217,12 @@
    <strong>SMD&copy; 2020 <a href="http://soemultidigital.id">Soe Multi Digital</a>.</strong> All rights reserved.
  </footer>
 
-  
+
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-		
-	
+
+
 	<?php foreach ($data->result_array() as $i) :
               $inbox_id=$i['inbox_id'];
               $inbox_nama=$i['inbox_nama'];
@@ -239,10 +239,10 @@
                         <h4 class="modal-title" id="myModalLabel">Hapus Agenda</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/inbox/hapus_inbox'?>" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">       
-							       <input type="hidden" name="kode" value="<?php echo $inbox_id;?>"/> 
+                    <div class="modal-body">
+							       <input type="hidden" name="kode" value="<?php echo $inbox_id;?>"/>
                             <p>Apakah Anda yakin mau menghapus data ini?</p>
-                               
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
@@ -253,8 +253,8 @@
             </div>
         </div>
 	<?php endforeach;?>
-	
-	
+
+
 
 
 <!-- jQuery 2.2.3 -->
@@ -323,7 +323,7 @@
                     bgColor: '#FF4859'
                 });
         </script>
-    
+
     <?php elseif($this->session->flashdata('msg')=='info'):?>
         <script type="text/javascript">
                 $.toast({
