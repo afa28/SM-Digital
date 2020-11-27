@@ -8,7 +8,7 @@ class Home extends CI_Controller{
 		parent::__construct();
 		$this->load->model('m_tulisan');
 		$this->load->model('m_pengunjung');
-        $this->m_pengunjung->count_visitor();
+		$this->m_pengunjung->count_visitor();
 	}
 
 	function index(){
